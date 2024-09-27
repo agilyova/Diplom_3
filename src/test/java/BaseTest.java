@@ -7,28 +7,19 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class BaseTest {
   String baseUrl = "https://stellarburgers.nomoreparties.site";
+  String browserWindowSize = "--window-size=1920,1080";
 
-  private String baseDriver = "Chrome";
-  Browser browser = Browser.YANDEX;
+  Browser browser = Browser.CHROME;
+  String pathToYandexDriver = "C:\\Users\\Aleksandra\\WebDriver\\bin\\yandexdriver.exe";
 
   WebDriver getBaseDriver() {
-    if (baseDriver.equals("Firefox")) {
-      WebDriver driver = new FirefoxDriver(new FirefoxOptions().addArguments("--start-maximized"));
-      driver.manage().window().setSize(new Dimension(1920, 1080));
-      return driver;
-    } else {
-      return new ChromeDriver(new ChromeOptions().addArguments("--window-size=1920,1080"));
-    }
-  }
-
-  WebDriver getWebDriver() {
     switch (browser) {
       case CHROME:
-        return new ChromeDriver(new ChromeOptions().addArguments("--window-size=1920,1080"));
+        return new ChromeDriver(new ChromeOptions().addArguments(browserWindowSize));
       case YANDEX:
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=1920,1080");
-        System.setProperty("webdriver.chrome.driver", "D:\\Webdriver\\bin\\yandexdriver.exe");
+        options.addArguments(browserWindowSize);
+        System.setProperty("webdriver.chrome.driver", pathToYandexDriver);
         return new ChromeDriver(options);
       default:
         throw new IllegalArgumentException("Unsupported browser " + browser);

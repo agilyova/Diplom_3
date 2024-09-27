@@ -12,7 +12,7 @@ public class ConstructorTest extends BaseTest {
 
   @Before
   public void setUp() {
-    driver = getWebDriver();
+    driver = getBaseDriver();
     mainPage = new MainPage(driver);
     driver.get(baseUrl);
   }
@@ -41,8 +41,8 @@ public class ConstructorTest extends BaseTest {
     mainPage.checkMenuSectionTitleInTheTopOfMenu(mainPage.getToppingTitle()) ;
   }
 
-/*  @After
+  @After
   public void tearDown() {
     driver.quit();
-  }*/
+  }
 }

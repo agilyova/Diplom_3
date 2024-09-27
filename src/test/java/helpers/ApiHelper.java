@@ -40,6 +40,11 @@ public class ApiHelper {
       .post(USER_CREATE_ROUTE);
 
     response.then().statusCode(200);
+
+    //Несколько раз ловила 403
+    if (response.statusCode() != 200) {
+    System.out.println(response.then().extract().path("message").toString());}
+
     String accessToken = response.then().extract().path("accessToken");
     String refreshToken = response.then().extract().path("refreshToken");
     return Map.of("accessToken", accessToken, "refreshToken", refreshToken);
